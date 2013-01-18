@@ -1,6 +1,3 @@
-.gitignore
-.travis.yml
-Build
 Build.PL
 Changes
 font/LICENSE

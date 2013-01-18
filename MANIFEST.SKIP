@@ -20,6 +20,7 @@
 \.DS_Store$
 
 # Perl generated files
+^Build$
 ^cover_db
 ^_build/
 
