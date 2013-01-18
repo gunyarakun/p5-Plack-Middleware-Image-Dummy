@@ -2,8 +2,10 @@
 ^.git/
 
 # For maintainer
-^\.shipit
-^\.perltidyrc
+^\.shipit$
+^\.perltidyrc$
+^\.gitignore$
+^\.travis.yml$
 ^MANIFEST\.SKIP$
 
 # Temporary files
@@ -23,3 +25,5 @@
 
 # Locally installed modules
 ^local/
+^MYMETA\.yml$
+^MYMETA\.json$
