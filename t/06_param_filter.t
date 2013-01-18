@@ -9,10 +9,10 @@ use HTTP::Request::Common;
 use HTTP::Response;
 use Plack::Test;
 
-our $retval_of_param_filter;
+our $param_filter;
 
 sub param_filter {
-    $retval_of_param_filter;
+    $param_filter->($_[0]);
 }
 
 my $handler = builder {
@@ -24,14 +24,18 @@ my $handler = builder {
 test_psgi $handler, sub {
     my $cb = shift;
 
-    subtest 'Go!' => sub {
-        local $retval_of_param_filter = 1;
+    subtest 'As is' => sub {
+        local $param_filter = sub {
+            $_[0];
+        };
         my $res = $cb->(GET "http://localhost/images/100x100.png");
         is $res->code, 200, 'Response HTTP status';
     };
 
     subtest 'Stop!' => sub {
-        local $retval_of_param_filter = 0;
+        local $param_filter = sub {
+            undef;
+        };
         my $res = $cb->(GET "http://localhost/images/100x100.png");
         is $res->code, 404, 'Response HTTP status';
     };

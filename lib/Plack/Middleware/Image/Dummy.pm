@@ -33,12 +33,11 @@ sub call {
             $query = $req->query_parameters;
         }
         my $params = parse_params($path_info, $query);
-        if ($params
-            && !($self->param_filter && !$self->param_filter->($params))) {
-            create_image($params, $self->font_path);
-        } else {
-            return_error(404, 'Not found.');
+        if ($params) {
+            $params = $self->param_filter->($params) if $self->param_filter;
+            return create_image($params, $self->font_path) if $params;
         }
+        return_error(404, 'Not found.');
     } else {
         $self->app->($env);
     }
@@ -229,10 +228,10 @@ Plack::Middleware::Image::Dummy - Dummy image responser for Plack
             my $params = shift;
             if ($ENV{PLACK_ENV} eq 'production') {
                 print STDERR "Do not show under production environment.\n";
-                0;
+                undef;
             } else {
                 $params->{text} .= ':D';
-                1;
+                $params;
             }
         };
 
@@ -255,7 +254,8 @@ Font path.
 
 =head2 param_filter
 
-A code reference. If the code returns false-like value, the response is 404.
+A code reference. The code called with one HashRef contains parsed parameters.
+Evaluated value is used in image creation.
 
 =head1 URI
 
