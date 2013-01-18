@@ -1,0 +1,25 @@
+# VCS
+^.git/
+
+# For maintainer
+^\.shipit
+^\.perltidyrc
+^MANIFEST\.SKIP$
+
+# Temporary files
+\.tmp$
+\.old$
+\.bak$
+\.orig$
+\.rej$
+\..*?\.sw[po]$
+
+# Mac
+\.DS_Store$
+
+# Perl generated files
+^cover_db
+^_build/
+
+# Locally installed modules
+^local/

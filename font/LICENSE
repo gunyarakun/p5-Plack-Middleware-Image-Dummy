@@ -16,3 +16,4 @@ limitations under the License.
 
 This directory contains the fonts for testing the module.
 They are licensed under the Apache 2 license.
+The fonts are fetched from https://github.com/android/platform_frameworks_base/tree/master/data/fonts.
