@@ -19,16 +19,12 @@ my $class = Module::Build->subclass(
 );
 
 my $build = $class->new(
-    license        => 'perl',
-    dynamic_config => 0,
+    module_name => 'Plack::Middleware::Image::Dummy',
+    dist_author =>
+      'Tasuku SUENAGA a.k.a. gunyarakun <tasuku-s-cpanATATtitech.ac>',
+    license => 'perl',
 
-    build_requires => {
-        'Test::More'     => '0.98',
-        'Test::Requires' => '0',
-        'Plack::Test'    => '0',
-    },
-    configure_requires => { 'Module::Build' => '0.38' },
-    requires           => {
+    requires => {
         perl                        => '5.008005',
         'parent'                    => '0',
         'Imager'                    => '0.94',
@@ -36,12 +32,15 @@ my $build = $class->new(
         'Plack::Builder'            => '0',
         'Plack::Middleware::Static' => '0',
     },
+    configure_requires => { 'Module::Build' => '0.38' },
+    build_requires     => {},
+    test_requires      => {
+        'Test::More'     => '0.98',
+        'Test::Requires' => '0',
+        'Plack::Test'    => '0',
+    },
 
-    no_index    => { 'directory' => ['inc'] },
-    name        => 'Plack-Middleware-Image-Dummy',
-    module_name => 'Plack::Middleware::Image::Dummy',
-
-    # script_files => [''],
+    no_index => { 'directory' => ['inc'] },
 
     test_files => (-d '.git' || $ENV{RELEASE_TESTING}) ? 't/ xt/' : 't/',
     recursive_test_files => 1,
