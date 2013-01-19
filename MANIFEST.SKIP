@@ -23,6 +23,7 @@
 ^Build$
 ^cover_db
 ^_build/
+^blib/
 
 # Locally installed modules
 ^local/
