@@ -1,0 +1,35 @@
+# VCS
+^.git/
+
+# For maintainer
+^author/
+^\.shipit$
+^\.perltidyrc$
+^\.gitignore$
+^\.travis.yml$
+^MANIFEST\.SKIP$
+
+# Temporary files
+\.tmp$
+\.old$
+\.bak$
+\.orig$
+\.rej$
+\..*?\.sw[po]$
+
+# Mac
+\.DS_Store$
+
+# Perl generated files
+^Build$
+^cover_db
+^_build/
+^blib/
+
+# Locally installed modules
+^local/
+^MYMETA\.yml$
+^MYMETA\.json$
+
+# For github only
+^README.pod$

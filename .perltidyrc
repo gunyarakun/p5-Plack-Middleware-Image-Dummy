@@ -1,0 +1,63 @@
+# vim: set expandtab ts=4 sw=4 nowrap ft=sh ff=unix : */
+--backup-and-modify-in-place
+--backup-file-extension=/
+--maximum-line-length=80           # Max line width is 80 col
+--indent-columns=4                 # Indent level is 4 cols
+--output-line-ending=unix          # LF
+--iterations=2                     # do 2 complete iterations
+--continuation-indentation=2       # Continuation indent is 2 cols
+--starting-indentation-level=0
+--closing-token-indentation=0
+--no-indent-closing-brace
+--no-outdent-long-quotes           # Don't outdent long quoted strings
+--no-outdent-labels
+--no-outdent-keywords
+--paren-tightness=2
+--square-bracket-tightness=1
+--brace-tightness=1                # Maximum brace tightness
+--block-brace-tightness=0          # Mininum block brace tightness
+--no-space-terminal-semicolon
+--no-space-for-semicolon           # No space before semicolons
+--add-semicolons
+--add-whitespace
+--delete-old-whitespace
+--trim-qw
+--indent-block-comments
+--indent-spaced-block-comments
+--no-outdent-long-comments
+--minimum-space-to-comment=2
+--fixed-position-side-comment=0
+--ignore-side-comment-lengths
+--no-hanging-side-comments
+--closing-side-comments
+--closing-side-comment-interval=30
+--closing-side-comment-prefix="## end"
+--closing-side-comment-maximum-text=30
+--closing-side-comments-balanced
+--closing-side-comment-else-flag=0
+--no-static-block-comments         # Comment is indented, too
+--format-skipping
+--cuddled-else                     # Cuddled Else
+--no-opening-brace-on-new-line     # Opening Braces is right
+--no-opening-sub-brace-on-new-line # Opening Sub Braces is right
+--no-opening-anonymous-sub-brace-on-new-line
+--opening-brace-always-on-right    # Opening Braces Right
+--no-opening-token-right
+--vertical-tightness=0
+--vertical-tightness-closing=0
+--no-stack-opening-paren
+--no-stack-opening-hash-brace
+--no-stack-opening-square-bracket
+--no-stack-closing-paren
+--no-stack-closing-hash-brace
+--no-stack-closing-square-bracket
+--delete-old-newlines
+--add-newlines
+--maximum-fields-per-table=20
+--comma-arrow-breakpoints=1
+--break-at-old-comma-breakpoints
+--break-at-old-logical-breakpoints
+--break-at-old-keyword-breakpoints
+--break-at-old-ternary-breakpoints
+--break-at-old-attribute-breakpoints
+--keep-interior-semicolons

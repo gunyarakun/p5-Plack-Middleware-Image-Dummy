@@ -1,0 +1,4 @@
+steps = FindVersion, ChangeVersion, CheckChangeLog, MakeDist, DistTest, Commit, Tag, UploadCPAN
+
+git.tagpattern = %v
+git.push_to = origin
