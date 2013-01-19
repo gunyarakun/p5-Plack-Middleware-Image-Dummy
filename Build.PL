@@ -38,15 +38,19 @@ my $build = $class->new(
         'Plack::Builder'            => '0',
         'Plack::Middleware::Static' => '0',
     },
-    configure_requires => { 'Module::Build' => '0.38' },
-    build_requires     => {},
-    test_requires      => {
+    configure_requires => {
+        'Module::Build' => '0.38',
+        'Pod::Select'   => '0',
+        'Pod::Readme'   => '0',
+    },
+    build_requires => {},
+    test_requires  => {
         'Test::More'     => '0.98',
         'Test::Requires' => '0',
         'Plack::Test'    => '0',
     },
 
-    no_index => { 'directory' => ['inc', 'author'] },
+    no_index => { 'directory' => [ 'inc', 'author' ] },
 
     test_files => (-d '.git' || $ENV{RELEASE_TESTING}) ? 't/ xt/' : 't/',
     recursive_test_files => 1,
