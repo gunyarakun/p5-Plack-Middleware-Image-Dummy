@@ -1,8 +1,24 @@
+# vim: set expandtab ts=4 sw=4 nowrap ft=perl ff=unix :
 use strict;
 use warnings;
 use Module::Build;
 
-my $build = Module::Build->new(
+my $class = Module::Build->subclass(
+    class => 'Module::Build::For::GitHub',
+    code  => q{
+        sub ACTION_docs {
+            use Pod::Select;
+
+            my $self = shift;
+
+            podselect({ -output => 'README.pod' }, 'lib/Plack/Middleware/Image/Dummy.pm');
+
+            return $self->SUPER::ACTION_docs;
+        }
+    }
+);
+
+my $build = $class->new(
     license        => 'perl',
     dynamic_config => 0,
 

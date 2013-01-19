@@ -305,5 +305,4 @@ Copyright (C) Tasuku SUENAGA a.k.a. gunyarakun
 
 This library is free software; you can redistribute it and/or modify
 it under the same terms as Perl itself.
-
 =cut
