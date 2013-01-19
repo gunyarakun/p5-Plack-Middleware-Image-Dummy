@@ -2,6 +2,7 @@
 ^.git/
 
 # For maintainer
+^author/
 ^\.shipit$
 ^\.perltidyrc$
 ^\.gitignore$

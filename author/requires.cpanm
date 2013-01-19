@@ -1,0 +1,14 @@
+# Tidy
+Perl::Tidy
+
+# Execute xt
+Test::Spelling
+Test::Perl::Critic
+Test::MinimumVersion
+Test::CPAN::Meta
+
+# Release
+ShipIt
+CPAN::Uploader
+CPAN::Meta::Spec
+Software::License

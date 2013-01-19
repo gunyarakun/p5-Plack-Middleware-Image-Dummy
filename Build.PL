@@ -8,10 +8,16 @@ my $class = Module::Build->subclass(
     code  => q{
         sub ACTION_docs {
             use Pod::Select;
+            use Pod::Readme;
 
             my $self = shift;
 
+            unlink 'README';
+            unlink 'README.pod';
             podselect({ -output => 'README.pod' }, 'lib/Plack/Middleware/Image/Dummy.pm');
+
+            my $pod_parser = Pod::Readme->new;
+            $pod_parser->parse_from_file('README.pod', 'README');
 
             return $self->SUPER::ACTION_docs;
         }
@@ -40,7 +46,7 @@ my $build = $class->new(
         'Plack::Test'    => '0',
     },
 
-    no_index => { 'directory' => ['inc'] },
+    no_index => { 'directory' => ['inc', 'author'] },
 
     test_files => (-d '.git' || $ENV{RELEASE_TESTING}) ? 't/ xt/' : 't/',
     recursive_test_files => 1,
