@@ -30,3 +30,6 @@
 ^local/
 ^MYMETA\.yml$
 ^MYMETA\.json$
+
+# For github only
+^README.pod$
