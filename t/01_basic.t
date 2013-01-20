@@ -61,6 +61,12 @@ test_psgi $handler, sub {
             is $res->code, 404, 'Response HTTP status';
         };
     };
+
+    subtest 'With color' => sub {
+        my $res = $cb->(GET "http://localhost/images/100x100.png?color=ff0000&bgcolor=00ff00");
+        is $res->code,         200,         'Response HTTP status';
+        is $res->content_type, 'image/png', 'Response Content-Type';
+    };
 };
 
 done_testing;

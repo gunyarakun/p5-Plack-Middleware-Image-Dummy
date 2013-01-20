@@ -24,3 +24,5 @@ minsize
 URI
 Tasuku SUENAGA
 gunyarakun
+RRGGBB
+ff
