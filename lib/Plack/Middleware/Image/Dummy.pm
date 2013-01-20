@@ -222,8 +222,8 @@ Plack::Middleware::Image::Dummy - Dummy image responser for Plack
 
         # map path with regex
         enable 'Image::Dummy', map_path => qr/^\//, font_path => './font/MTLmr3m.ttf';
-            enable 'Image::Dummy';
 
+        # with param_filter
         enable 'Image::Dummy', map_path => '/', font_path => './font/MTLmr3m.ttf', param_filter => sub {
             my $params = shift;
             if ($ENV{PLACK_ENV} eq 'production') {
