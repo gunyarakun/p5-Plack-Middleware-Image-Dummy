@@ -301,7 +301,7 @@ L<Imager::File::GIF>
 
 =head1 LICENSE
 
-Files in 'font' directory are licenced under the Apache Licence 2.0.
+Files in 'font' directory are licensed under the Apache License 2.0.
 
 Copyright (C) Tasuku SUENAGA a.k.a. gunyarakun
 
