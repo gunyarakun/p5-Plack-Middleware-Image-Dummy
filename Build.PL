@@ -43,8 +43,7 @@ my $build = $class->new(
         'Pod::Select'   => '0',
         'Pod::Readme'   => '0',
     },
-    build_requires => {},
-    test_requires  => {
+    build_requires => {
         'Test::More'     => '0.98',
         'Test::Requires' => '0',
         'Plack::Test'    => '0',
