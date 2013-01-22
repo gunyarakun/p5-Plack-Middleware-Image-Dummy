@@ -35,6 +35,8 @@ my $build = $class->new(
         'parent'                    => '0',
         'Imager'                    => '0.94',
         'Imager::File::GIF'         => '0.86',
+        'Imager::File::PNG'         => '0.86',
+        'Imager::File::JPEG'        => '0.85',
         'Plack::Builder'            => '0',
         'Plack::Middleware::Static' => '0',
     },
