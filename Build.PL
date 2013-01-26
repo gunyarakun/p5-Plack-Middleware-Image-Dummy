@@ -46,9 +46,10 @@ my $build = $class->new(
         'Pod::Readme'   => '0',
     },
     build_requires => {
-        'Test::More'     => '0.98',
-        'Test::Requires' => '0',
-        'Plack::Test'    => '0',
+        'Test::More'      => '0.98',
+        'Test::Requires'  => '0',
+        'Test::Exception' => '0',
+        'Plack::Test'     => '0',
     },
 
     no_index => { 'directory' => [ 'inc', 'author' ] },

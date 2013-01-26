@@ -11,18 +11,30 @@ use Imager;
 use Plack::Request;
 use Plack::MIME;
 use Plack::Util;
-use Plack::Util::Accessor qw/map_path font_path param_filter/;
+use Plack::Util::Accessor
+  qw/map_path font_path param_filter max_width max_height/;
 
 our $DEFAULT_TEXT_COLOR       = [ 0,    0,    0 ];
 our $DEFAULT_BACKGROUND_COLOR = [ 0xcc, 0xcc, 0xcc ];
 our $DEFAULT_MIN_FONT_SIZE    = 18;
+our $DEFAULT_MAX_WIDTH        = 2048;
+our $DEFAULT_MAX_HEIGHT       = 2048;
+
+sub prepare_app {
+    my $self = shift;
+
+    my @err_msgs;
+
+    push @err_msgs, 'Please specify map_path.'  unless $self->map_path;
+    push @err_msgs, 'Please specify font_path.' unless $self->font_path;
+    $self->max_width($DEFAULT_MAX_WIDTH)   unless $self->max_width;
+    $self->max_height($DEFAULT_MAX_HEIGHT) unless $self->max_height;
+
+    die join(' ', @err_msgs) if scalar(@err_msgs) > 0;
+}
 
 sub call {
     my ($self, $env) = @_;
-
-    return return_error(500, 'Please specify map_path.') unless $self->map_path;
-    return return_error(500, 'Please specify font_path.')
-      unless $self->font_path;
 
     my $path_info = match_path($env->{PATH_INFO}, $self->map_path);
 
@@ -35,13 +47,26 @@ sub call {
         my $params = parse_params($path_info, $query);
         if ($params) {
             $params = $self->param_filter->($params) if $self->param_filter;
-            return create_image($params, $self->font_path) if $params;
+
+            if ($params) {
+                return return_error(
+                    500,
+                    "Width is too big. Max is $self->max_width"
+                ) if $self->max_width < $params->{width};
+
+                return return_error(
+                    500,
+                    "Height is too big. Max is $self->max_height"
+                ) if $self->max_height < $params->{height};
+
+                return create_image($params, $self->font_path) if $params;
+            }
         }
         return_error(404, 'Not found.');
     } else {
         $self->app->($env);
     }
-}
+} ## end sub call
 
 sub match_path {
     my ($given_path, $config_path) = @_;
@@ -223,6 +248,10 @@ Plack::Middleware::Image::Dummy - Dummy image responser for Plack
         # map path with regex
         enable 'Image::Dummy', map_path => qr/^\//, font_path => './font/MTLmr3m.ttf';
 
+        # change max_width and max_height
+        enable 'Image::Dummy', map_path => '/', font_path => './font/MTLmr3m.ttf',
+          max_width => 100, max_height => 200;
+
         # with param_filter
         enable 'Image::Dummy', map_path => '/', font_path => './font/MTLmr3m.ttf', param_filter => sub {
             my $params = shift;
@@ -251,6 +280,14 @@ URI path mapped to this module.
 =head2 font_path
 
 Font path.
+
+=head2 max_width
+
+Max width of image. Default is 2048.
+
+=head2 max_height
+
+Max height of image. Default is 2048.
 
 =head2 param_filter
 

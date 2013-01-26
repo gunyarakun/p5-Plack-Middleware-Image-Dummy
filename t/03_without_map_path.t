@@ -2,6 +2,7 @@
 use strict;
 use warnings;
 use Test::More;
+use Test::Exception;
 use Plack::Middleware::Static;
 use Plack::Builder;
 use Plack::Util;
@@ -9,17 +10,12 @@ use HTTP::Request::Common;
 use HTTP::Response;
 use Plack::Test;
 
-my $handler = builder {
-    enable 'Image::Dummy', font_path => './font/MTLmr3m.ttf';
-};
-
-test_psgi $handler, sub {
-    my $cb = shift;
-
-    subtest 'Basic response without map_path' => sub {
-        my $res = $cb->(GET "http://localhost/images/100x100.png");
-        is $res->code, 500, 'Response HTTP status';
-    };
+subtest 'Without map path' => sub {
+    dies_ok {
+        my $handler = builder {
+            enable 'Image::Dummy', font_path => './font/MTLmr3m.ttf';
+        };
+    }
 };
 
 done_testing;

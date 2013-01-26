@@ -17,8 +17,7 @@ sub param_filter {
 
 my $handler = builder {
     enable 'Image::Dummy', map_path => qr{^/images/},
-      font_path => './font/MTLmr3m.ttf', param_filter => \&param_filter,
-      ;
+      font_path => './font/MTLmr3m.ttf', param_filter => \&param_filter;
 };
 
 test_psgi $handler, sub {

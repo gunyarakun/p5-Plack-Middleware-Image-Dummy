@@ -14,8 +14,12 @@ Plack::Middleware::Image::Dummy - Dummy image responser for Plack
 
         # map path with regex
         enable 'Image::Dummy', map_path => qr/^\//, font_path => './font/MTLmr3m.ttf';
-            enable 'Image::Dummy';
 
+        # change max_width and max_height
+        enable 'Image::Dummy', map_path => '/', font_path => './font/MTLmr3m.ttf',
+          max_width => 100, max_height => 200;
+
+        # with param_filter
         enable 'Image::Dummy', map_path => '/', font_path => './font/MTLmr3m.ttf', param_filter => sub {
             my $params = shift;
             if ($ENV{PLACK_ENV} eq 'production') {
@@ -44,6 +48,14 @@ URI path mapped to this module.
 
 Font path.
 
+=head2 max_width
+
+Max width of image. Default is 2048.
+
+=head2 max_height
+
+Max height of image. Default is 2048.
+
 =head2 param_filter
 
 A code reference. The code called with one HashRef contains parsed parameters.
@@ -65,11 +77,11 @@ You can specify text written in the center of the image. Default is #{width}x#{h
 
 =head2 color
 
-You can specify text color.
+You can specify text color with 'RRGGBB'. ex.) ff0000 is red.
 
 =head2 bgcolor
 
-You can specify background color.
+You can specify background color with 'RRGGBB'. ex.) 00ff00 is green.
 
 =head2 minsize
 
@@ -93,7 +105,7 @@ L<Imager::File::GIF>
 
 =head1 LICENSE
 
-Files in 'font' directory are licenced under the Apache Licence 2.0.
+Files in 'font' directory are licensed under the Apache License 2.0.
 
 Copyright (C) Tasuku SUENAGA a.k.a. gunyarakun
 
