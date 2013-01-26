@@ -3,28 +3,7 @@ use strict;
 use warnings;
 use Module::Build;
 
-my $class = Module::Build->subclass(
-    class => 'Module::Build::For::GitHub',
-    code  => q{
-        sub ACTION_docs {
-            use Pod::Select;
-            use Pod::Readme;
-
-            my $self = shift;
-
-            unlink 'README';
-            unlink 'README.pod';
-            podselect({ -output => 'README.pod' }, 'lib/Plack/Middleware/Image/Dummy.pm');
-
-            my $pod_parser = Pod::Readme->new;
-            $pod_parser->parse_from_file('README.pod', 'README');
-
-            return $self->SUPER::ACTION_docs;
-        }
-    }
-);
-
-my $build = $class->new(
+my $build = Module::Build->new(
     module_name => 'Plack::Middleware::Image::Dummy',
     dist_author =>
       'Tasuku SUENAGA a.k.a. gunyarakun <tasuku-s-cpanATATtitech.ac>',
@@ -42,8 +21,6 @@ my $build = $class->new(
     },
     configure_requires => {
         'Module::Build' => '0.38',
-        'Pod::Select'   => '0',
-        'Pod::Readme'   => '0',
     },
     build_requires => {
         'Test::More'      => '0.98',
