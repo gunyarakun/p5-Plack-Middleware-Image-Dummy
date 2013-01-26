@@ -15,6 +15,7 @@ t/03_without_map_path.t
 t/04_without_font_path.t
 t/05_parse_color.t
 t/06_param_filter.t
+t/07_max_width_and_height.t
 xt/01_podspell.t
 xt/02_perlcritic.t
 xt/03_pod.t

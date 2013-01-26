@@ -1,5 +1,8 @@
 Revision history for Plack::Middleware::Image::Dummy
 
+0.05    Thu Jan 26 16:15:14 2013
+    - Add max_width/max_height options
+
 0.04    Thu Jan 22 19:41:11 2013
     - Add Imager::File::(PNG|JPEG) to dependent modules
 
